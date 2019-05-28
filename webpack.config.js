@@ -20,8 +20,11 @@ module.exports = {
                 ],
                 loader: 'babel-loader',
                 options: {
-                    presets: ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"]
-                }
+                    presets: ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"],
+                    plugins: [
+                        "react-hot-loader/babel"
+                    ]
+                },
             },
             {
                 test: /\.css$/,
@@ -35,6 +38,9 @@ module.exports = {
     resolve: {
         extensions: [
             '.js', '.tsx', '.ts', '.jsx'
-        ]
+        ],
+        alias: {
+            'react-dom': '@hot-loader/react-dom'
+        }
     }
 };

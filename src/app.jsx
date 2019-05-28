@@ -1,8 +1,9 @@
 
 import React, { Component } from 'react';
-import Fade from 'react-reveal';
-import { Center, AppScaffold, HeaderContainer, BodyContainer, NavigationContainer, Width } from './layout/containers';
+import { Center, AppScaffold, HeaderContainer, BodyContainer, NavigationContainer, Width, Row } from './layout/containers';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+
+import Fade from 'react-reveal';
 
 import { routes, Home, About } from './content/routes/routes';
 import { Highlight } from './components/typography';
@@ -17,7 +18,11 @@ class Application extends Component {
                     <Width width={75}>
                         <h1>Microswag.online</h1>
                         <h2>Welcome to <Highlight>microswag.online</Highlight>. Here you will be met with nothing of significance or value.</h2>
-                        <Center><EpicButton>Greenpath</EpicButton></Center>
+                        <Row>
+                            <Center><EpicButton>Greenpath</EpicButton></Center>
+                            <Center><EpicButton>Forgotten Crossroads</EpicButton></Center>
+                            <Center><EpicButton>Ancient Basin</EpicButton></Center>
+                        </Row>
                     </Width>
                 </Center>
             </HeaderContainer>
@@ -38,12 +43,6 @@ class Application extends Component {
     }
 }
 
-class AppWrapper extends Component {
-    render() {
-        return (
-            <BrowserRouter><Application/></BrowserRouter>
-        );
-    }
-}
+const AppWrapper = () => <BrowserRouter><Application/></BrowserRouter>;
 
 export default AppWrapper;

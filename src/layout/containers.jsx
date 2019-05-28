@@ -12,14 +12,15 @@ export const classes = {
     page: 'page',
     header: 'header',
     navigation: 'navigation',
-    centerClasses: 'layout-center',
-    sceneContainer: 'container-scene'
+    center: 'layout-center',
+    row: 'layout-row',
+    scene: 'container-scene'
 }
 
 export class Center extends Component {
     render() {
         return (
-            <div className={classes.centerClasses}>{this.props.children}</div>
+            <div className={classes.center}>{this.props.children}</div>
         );
     }
 }
@@ -28,6 +29,14 @@ export class Width extends Component {
     render() {
         return (
             <div style={{width: `${this.props.width}%`}}>{this.props.children}</div>
+        );
+    }
+}
+
+export class Row extends Component {
+    render() {
+        return (
+            <div className={classes.row}>{this.props.children}</div>
         );
     }
 }
@@ -62,7 +71,7 @@ export class NavigationContainer extends Component {
 export class SceneContainer extends Component {
     render() {
         return (
-            <div className={`${classes.sceneContainer}${this.props.pee ? ' pee' : ''}`}>{this.props.children}</div>
+            <div className={`${classes.scene}${this.props.pee ? ' pee' : ''}`}>{this.props.children}</div>
         );
     }
 }
