@@ -5,8 +5,8 @@ import Home from './home';
 import About from './about';
 
 const ROUTES = {
-    Home: '/home',
-    About: '/about',
+    Home: 'home',
+    About: 'about',
 }
 
 const ROUTE_NAMES = Object.values(ROUTES);

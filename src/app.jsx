@@ -1,17 +1,40 @@
 
 import React, { Component } from 'react';
-import { Center, AppScaffold, HeaderContainer, BodyContainer, NavigationContainer, Width, Row } from './layout/containers';
-import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import Fade from 'react-reveal';
 
 import { routes, Home, About } from './content/routes/routes';
+import { Center, AppScaffold, HeaderContainer, BodyContainer, NavigationContainer, Width, Row } from './layout/containers';
+
 import { Highlight } from './components/typography';
 import { EpicButton } from './components/input';
 
-class Application extends Component {
-    render() {
+import Router, { setPage, getPage } from './routing/routing';
 
+const pages = {
+    'home': <Home/>,
+    'about': <About/>
+};
+
+const fallbackRoute = 'home';
+
+class Application extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.router = new Router(pages, (page) => this.pageChanged(page), fallbackRoute);
+
+        this.state = {
+            page: this.router.getInitialPage()
+        };
+    }
+
+    pageChanged(page) {
+        this.setState({page: page});
+    }
+    
+    render() {
         const header = (
             <HeaderContainer>
                 <Center>
@@ -27,14 +50,9 @@ class Application extends Component {
                 </Center>
             </HeaderContainer>
         );
+        const Page = (props) => this.state.page;
         const body = (
-            <BodyContainer>
-                <Switch>
-                    <Route path='/' component={Home} />
-                    <Route path={routes.Home} component={Home} />
-                    <Route path={routes.About} component={About} />
-                </Switch>
-            </BodyContainer>
+            <BodyContainer><Page/></BodyContainer>
         );
 
         return (
@@ -43,6 +61,6 @@ class Application extends Component {
     }
 }
 
-const AppWrapper = () => <BrowserRouter><Application/></BrowserRouter>;
+const AppWrapper = () => <Application/>;
 
 export default AppWrapper;
